@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@model IS.Web.Components.SafetyZoneDto
+
+@{
+    ViewBag.Title = "Add Safety Zone";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Caption
+{Add Safety Zone}
+
+
+@section SideNav {
+    @Html.Partial( "~/Views/Shared/_AdminSideNav.cshtml", null, new ViewDataDictionary( ViewData ) { { "SelectedNavText", "Safety Zones" } } ) )
+}
+
+@section TopButtons
+{
+    @Html.ActionLink( "Cancel", "SafetyZones", new { controller = "admin" }, new { @class = "btn btn-default" } )
+    <input type="button" class="btn btn-primary" value="Save" onclick="$('#detail-form').submit();" />
+}
+
+<form id="detail-form" action="add" method="post" class="form-horizontal">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="section">
+            <div class="section-content">
+                <div class="section-row">
+                    <div class="col-md-10 col-md-offset-1">
+                        @Html.Partial( "SafetyZoneDetail", Model )
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        
+    </div>
+    
+</form>

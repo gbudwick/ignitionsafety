@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@{
+    ViewBag.Title = "Packages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section SideNav {
+    @Html.Partial( "~/Views/Shared/_AdminSideNav.cshtml", null, new ViewDataDictionary( ViewData ) { { "SelectedNavText", "Dashboard" } } ) )
+}
+<div class="row">
+    <div class="col-md-4">
+        <h3>Getting Started</h3>
+        <p>Here are some things you need to know to get started.</p>
+        <p>A team roster is made up of all employees that may need to be accounted for during an emergency or drill.  Each employee is part of a department.  
+            If you don't use departments in your company, employees can just be grouped together by function.</p>
+        <p>During an emergency each department or function will report to a safe place outside of a building.  This is what we refer to as a safety zone.  
+            Multiple departments can report to the same safety zone.  Once a team member arrives in the safety zone a safety leader with access to Ignition Safety 
+        using their mobile device will mark the person present and accounted for.</p>
+        <p>The easiest way to get started is to upload your team roster.  You can edit it in the web app, but to be honest it's easier to do it in a 
+            spreadsheet.  Go ahead and download a sample file here [<a href="admin/downloadsamplefile">Download Sample</a>].  The file can be opened in a spreadsheet editor like Excel or Google Sheets.  
+        The columns in the spreadsheet are separated by a tab character.  This is referred to as a tab delimited file and will be recognized by your spreadsheet program.
+            Once it's edited you can upload it using the menu selection to the left.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Setting up the safety team</h3>
+        <p>Your safety team should be made up of one or more people that are responsible to mark people present in the safety zone during an emergency or drill.  Each safety team 
+            member is considered a user of this application and will be able to login.</p>
+        <p>When sending invites to your safety team not all of them will need rights to the menu on the left.  They may only need rights to mark the roster when there is safety event.</p>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>

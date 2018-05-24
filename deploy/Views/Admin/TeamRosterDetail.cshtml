@@ -1,0 +1,48 @@
+﻿@model IS.Web.Components.Dtos.TeamRosterMemberDto
+
+@inject IS.Services.Services.DepartmentFormService FormService
+<div class="col-md-10 col-md-offset-1">
+    <div class="section">
+        <div class="section-content">
+            <div class="section-row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="row form-section">
+                        <div class="col-md-4 form-section-caption">
+                            Team Member<br />
+                        </div>
+                        <div class="form-section-body col-md-8">
+                            <input type="hidden" asp-for="Id" />
+                            <div class="form-row row">
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <div asp-validation-summary="All"></div>
+                                        <label class="control-label">First Name</label>
+                                        <input type="text" asp-for="FirstName" class="form-control width-full" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <label class="control-label">Last Name</label>
+                                        <input type="text" asp-for="LastName" class="form-control width-full" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <label class="control-label">Contact Phone</label>
+                                        <input type="text" asp-for="ContactPhone" class="form-control width-full" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <label class="control-label">Department</label>
+                                        <select asp-for="DepartmentId" asp-items="FormService.GetDepartments()" class="form-control width-full"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

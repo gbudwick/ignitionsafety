@@ -1,0 +1,98 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@model List<IS.Web.Components.Dtos.TeamRosterMemberDto>
+
+@{
+    ViewBag.Title = "Departments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Caption
+{Team Roster}
+
+
+@section SideNav {
+    @Html.Partial( "~/Views/Shared/_AdminSideNav.cshtml", null, new ViewDataDictionary( ViewData ) { { "SelectedNavText", "Team Roster" } } ) )
+}
+
+
+@section TopButtons
+{
+    <a href="teamroster/add" class="btn btn-success">Add New</a>
+}
+
+
+<div class="col-md-10 col-md-offset-1">
+    <div class="section">
+        <div class="section-content">
+            <div class="section-row">
+                <div class="section-cell">
+                    <a asp-action="teamroster" asp-route-li="*">*</a> |
+                    <a asp-action="teamroster" asp-route-li="a">A</a> |
+                    <a asp-action="teamroster" asp-route-li="b">B</a> |
+                    <a asp-action="teamroster" asp-route-li="c">C</a> |
+                    <a asp-action="teamroster" asp-route-li="d">D</a> |
+                    <a asp-action="teamroster" asp-route-li="e">E</a> |
+                    <a asp-action="teamroster" asp-route-li="f">F</a> |
+                    <a asp-action="teamroster" asp-route-li="g">G</a> |
+                    <a asp-action="teamroster" asp-route-li="h">H</a> |
+                    <a asp-action="teamroster" asp-route-li="i">I</a> |
+                    <a asp-action="teamroster" asp-route-li="j">J</a> |
+                    <a asp-action="teamroster" asp-route-li="k">K</a> |
+                    <a asp-action="teamroster" asp-route-li="l">L</a> |
+                    <a asp-action="teamroster" asp-route-li="m">M</a> |
+                    <a asp-action="teamroster" asp-route-li="n">N</a> |
+                    <a asp-action="teamroster" asp-route-li="o">O</a> |
+                    <a asp-action="teamroster" asp-route-li="p">P</a> |
+                    <a asp-action="teamroster" asp-route-li="q">Q</a> |
+                    <a asp-action="teamroster" asp-route-li="r">R</a> |
+                    <a asp-action="teamroster" asp-route-li="s">S</a> |
+                    <a asp-action="teamroster" asp-route-li="t">T</a> |
+                    <a asp-action="teamroster" asp-route-li="u">U</a> |
+                    <a asp-action="teamroster" asp-route-li="v">V</a> |
+                    <a asp-action="teamroster" asp-route-li="w">W</a> |
+                    <a asp-action="teamroster" asp-route-li="xyz">XYZ</a> |
+                    <table class="table-section" style="border-collapse: collapse; table-layout: fixed;">
+                        <thead>
+                        <tr>
+                            <th style="width: 10%; text-align: center">Edit</th>
+                            <th style="width: 20%">Last Name</th>
+                            <th style="width: 20%">First Name</th>
+                            <th style="width: 20%">Contact Phone</th>
+                            <th style="width: 20%">Department</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var member in Model)
+                        {
+                            <tr style="height: 30px">
+                                <td style="text-align: center">
+                                    <a href="teamroster/@member.Id">
+
+                                        <span class="glyphicon glyphicon-edit" style="font-size: 14pt" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    @member.LastName
+                                </td>
+                                <td>
+                                    @member.FirstName
+                                </td>
+                                <td>
+                                    @member.ContactPhone
+                                </td>
+                                <td>
+                                    @member.Department
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

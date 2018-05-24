@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@model List<IS.Web.Components.Dtos.SafetyTeamMemberDto>
+
+@{
+    ViewBag.Title = "Departments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Caption
+{Safety Team}
+
+
+@section SideNav {
+    @Html.Partial( "~/Views/Shared/_AdminSideNav.cshtml", null, new ViewDataDictionary( ViewData ) { { "SelectedNavText", "Safety Team" } } ) )
+}
+
+
+@section TopButtons
+{
+    <a href="safetyteam/add" class="btn btn-success">Add New</a>
+}
+
+
+<div class="col-md-10 col-md-offset-1">
+    <div class="section">
+        <div class="section-content">
+            <div class="section-row">
+                <div class="section-cell">
+                    <table class="table-section" style="border-collapse: collapse; table-layout: fixed;">
+                        <thead>
+                        <tr>
+                            <th style="width: 6%; text-align: center">Edit</th>
+                            <th style="width: 20%; text-align: center">Email</th>
+                            <th style="width: 20%">Last Name</th>
+                            <th style="width: 54%">FirstName</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ( var member in Model )
+                            {
+                                <tr style="height: 30px">
+                                    <td style="text-align: center">
+                                        <a href="safetyteam/@member.Id">
+                                            <span class="glyphicon glyphicon-edit" style="font-size: 14pt" aria-hidden="true"></span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @member.Email
+                                    </td>
+                                    <td>
+                                        @member.LastName
+                                    </td>
+                                    <td>
+                                        @member.FirstName
+                                    </td>
+
+                                </tr>
+                            }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

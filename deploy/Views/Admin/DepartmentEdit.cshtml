@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@model IS.Web.Components.Dtos.DepartmentDto
+
+@{
+    ViewBag.Title = "Upload Roster";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Caption
+{Edit Department}
+
+
+@section SideNav {
+    @Html.Partial( "~/Views/Shared/_AdminSideNav.cshtml", null, new ViewDataDictionary( ViewData ) { { "SelectedNavText", "Departments" } } ) )
+}
+
+@section TopButtons
+{
+    <a class="btn btn-danger" href="delete/@Model.Id">Delete</a>
+    @Html.ActionLink( "Cancel", "Departments", new { controller = "admin" }, new { @class = "btn btn-default" } )
+    <input type="button" class="btn btn-primary" value="Save" onclick="$('#detail-form').submit();" />
+}
+
+<form id="detail-form" action="edit" method="post" class="form-horizontal">
+ @Html.Partial( "DepartmentDetail", Model )
+ </form>

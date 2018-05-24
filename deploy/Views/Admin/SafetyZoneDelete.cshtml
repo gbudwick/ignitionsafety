@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@model IS.Web.Components.SafetyZoneDto
+
+@{
+    ViewBag.Title = "Upload Roster";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Caption
+{Delete Safety Zone}
+
+
+@section SideNav {
+    @Html.Partial( "~/Views/Shared/_AdminSideNav.cshtml", null, new ViewDataDictionary( ViewData ) { { "SelectedNavText", "Safety Zones" } } ) )
+}
+
+@section TopButtons
+{
+    @Html.ActionLink( "Cancel", "SafetyZones", new { controller = "admin" }, new { @class = "btn btn-default" } )
+    <input type="button" class="btn btn-primary" value="Delete" onclick="$('#detail-form').submit();" />
+}
+
+<form id="detail-form" action="delete" method="post" class="form-horizontal">
+   @Html.Partial( "SafetyZoneDetail", Model )
+</form>

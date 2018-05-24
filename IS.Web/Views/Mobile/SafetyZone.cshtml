@@ -1,0 +1,6 @@
+﻿@model List<IS.Web.Components.SafetyZoneDto>
+@foreach (var safetyZone in Model)
+{
+    <a href="/mobile/checkin/@safetyZone.Id">@safetyZone.Name</a><br/>
+})
+    

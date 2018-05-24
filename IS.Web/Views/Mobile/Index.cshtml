@@ -1,0 +1,19 @@
+﻿@model IS.Web.Components.ViewModels.CheckOffViewModel
+@{
+    Layout = null;
+}
+Safety Zone<br/>
+          
+@foreach (var safetyZone in Model.SafetyZoneDtos)
+{
+    <a href="/mobile/index/@safetyZone.Id">@safetyZone.Name</a>
+}
+@foreach (var member in Model.RosterCheckIns)
+{
+    <div class="row">
+        <h3>@member.Name</h3>
+    <button class="btn btn-sm btn-default">Known</button>
+    <button class="btn btn-sm btn-default">Known</button>
+    </div>
+}
+

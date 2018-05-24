@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@{
+    ViewBag.Title = "Download Roster";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Caption
+{Download Roster}
+
+@section SideNav {
+    @Html.Partial( "~/Views/Shared/_AdminSideNav.cshtml", null, new ViewDataDictionary( ViewData ) { { "SelectedNavText", "Download Roster" } } ) )
+}
+
+<div class="section">
+    <div class="section-content">
+        <div class="section-row">
+            <div class="section-cell">
+               The file has been downloaded.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

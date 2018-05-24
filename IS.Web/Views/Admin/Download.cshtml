@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@{
+    ViewBag.Title = "Download Roster";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Caption
+{Download Roster}
+
+@section SideNav {
+    @Html.Partial( "~/Views/Shared/_AdminSideNav.cshtml", null, new ViewDataDictionary( ViewData ) { { "SelectedNavText", "Download Roster" } } ) )
+}
+
+<div class="section col-md-8 col-md-offset-2">
+    <div class="section-content">
+        <div class="section-row">
+            <div class="section-cell">
+                The easiest way to edit your data is in a spreadsheet using fill features and formulas.  By downloading your 
+                data you can easily make edits and then <a href="uploadroster">upload</a> back into Ignition Safety.
+                <br/><br/>
+                Your file will be downloaded as a tab delimited text file. In other words a tab character will divide each column 
+                of the spreadsheet.  This is a very common way of transfering data.  The spreadsheet will contain these columns: 
+                FirstName, LastName, ContactPhone, Department, and SafetyZone.  These can be edited and uploaded again.  Once 
+                uploaded all data in Ignition Safety will be reset as defined by your spreadsheet.<br/><br/>
+                This file can be opened and edited in Excel, Google Sheets or other popular spreadsheet programs.  When editing it is import that the 
+                columns stay in the same order as defined above.<br/><br/><br/>
+                <a href="downloadfile" class="btn btn-primary">Download</a>
+            </div>
+            <div class="section-cell">
+                You can download a sample file here<br/><br/>
+                <a href="downloadsamplefile" class="btn btn-primary">Download Sample</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

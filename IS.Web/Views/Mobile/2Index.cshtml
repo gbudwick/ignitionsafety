@@ -1,0 +1,121 @@
+﻿@{
+    Layout = null;
+}
+@model IS.Web.Components.ViewModels.RosterCheckOffViewModel
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ignition Safety</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("button").bind("click",
+                function () {
+                    if ($(this).hasClass("btn-success")) {
+                        $(this).removeClass("btn-success");
+                        $(this).addClass("btn-default");
+                        $(this).children(":first").removeClass("glyphicon-check");
+                        $(this).children(":first").addClass("glyphicon-unchecked");
+                        changeStatus($(this).data("id"), 0);
+                    } else {
+                        $(this).removeClass("btn-default");
+                        $(this).addClass("btn-success");
+                        $(this).children(":first").removeClass("glyphicon-unchecked");
+                        $(this).children(":first").addClass("glyphicon-check");
+                        changeStatus($(this).data("id"), 1);
+                    }
+                });
+        });
+
+        function changeStatus(id, status) {
+
+            $.ajax({
+                url: "/api/members/changestatus",
+                contentType: "application/json",
+                data: JSON.stringify({ MemberId: id, Status: status }),
+                type: "POST"
+            });
+
+
+           
+        }
+
+
+
+    </script>
+</head>
+<body >
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Ignition Safety</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <li><a asp-controller="Vendors" asp-action="Index">View Vendors</a></li>
+                        <li><a asp-controller="Markets" asp-action="Index">Markets</a></li>
+                        <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
+                    }
+                    else
+                    {
+                    <!--<li><a asp-controller="Markets" asp-action="Index">Login</a></li>-->
+                    }
+                </ul>
+            </div>
+
+        </div>
+        <div>@Model.SafetyZoneName</div>
+    </div>
+
+<div style="margin-top: 75px;">
+    
+        @foreach (var member in @Model.Members)
+        {
+            <div class="row" style="padding: 2px 5px 3px 5px">
+                <div cass="col-xs-12">
+                    <div class="col-xs-7">@member.LastName, @member.FirstName</div>
+                    <div class="col-xs-3">
+                        @if (member.Status == 1)
+                        {
+                            <button type="button" class="btn btn-xs btn-success" data-id="@member.Id">
+                                <i class="glyphicon glyphicon-check"></i>
+                                &nbsp;Present
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-xs btn-default" data-id="@member.Id">
+                                <i class="glyphicon glyphicon-unchecked"></i>
+                                &nbsp;Present
+                            </button>
+                        }
+
+
+
+                    </div>
+                </div>
+            </div>
+        }
+</div>
+</body>
+</html>

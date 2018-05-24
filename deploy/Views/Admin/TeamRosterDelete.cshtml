@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@model IS.Web.Components.Dtos.TeamRosterMemberDto
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Caption
+{Delete Team Member}
+
+
+@section SideNav {
+    @Html.Partial( "~/Views/Shared/_AdminSideNav.cshtml", null, new ViewDataDictionary( ViewData ) { { "SelectedNavText", "Team Roster" } } ) )
+}
+
+@section TopButtons
+{
+    @Html.ActionLink( "Cancel", "teamroster", new { controller = "admin" }, new { @class = "btn btn-default" } )
+    <input type="button" class="btn btn-primary" value="Delete" onclick="$('#detail-form').submit();" />
+}
+
+<form id="detail-form" action="delete" method="post" class="form-horizontal">
+    <input type="hidden" asp-for="Id" />
+    <div class="col-md-8 col-md-offset-2">
+        <div class="row form-section">
+            <div class="col-md-4 form-section-caption">
+                Team Member<br />
+            </div>
+            <div class="form-section-body col-md-8">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-row row">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div asp-validation-summary="All"></div>
+                            <label class="control-label">First Name</label>
+                            <input type="text" asp-for="FirstName" class="form-control width-full" readonly="readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label class="control-label">Last Name</label>
+                            <input type="text" asp-for="LastName" class="form-control width-full" readonly="readonly" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,51 @@
+﻿
+<ol class="next-nav__list next-nav__list--primary">
+    <li class="next-nav__item">
+        @Html.ActionLink( "Dashboard", "index", new { controller = "admin" }, new { @class = "next-nav__link next-nav__link--is-selected" } )
+    </li>
+    <li class="next-nav__item">
+        @Html.ActionLink( "Upload Roster", "uploadroster", new { controller = "admin" }, new { @class = "next-nav__link" } )
+    </li>
+    <li class="next-nav__item">
+        @Html.ActionLink( "Download Roster", "download", new { controller = "admin" }, new { @class = "next-nav__link" } )
+    </li>
+    <li class="next-nav__item">
+        @Html.ActionLink( "Safety Zones", "safetyzones", new { controller = "admin" }, new { @class = "next-nav__link" } )
+    </li>
+    <li class="next-nav__item">
+        @Html.ActionLink( "Departments", "departments", new { controller = "admin" }, new { @class = "next-nav__link" } )
+    </li>
+    <li class="next-nav__item">
+        @Html.ActionLink( "Team Roster", "teamroster", new { controller = "admin" }, new { @class = "next-nav__link" } )
+    </li>
+    @{
+        System.Security.Claims.ClaimsIdentity user = ( System.Security.Claims.ClaimsIdentity ) ( User.Identity );
+        if ( user.HasClaim( "AccountOwner", "True" ) )
+            {
+            <li class="next-nav__item">
+                @Html.ActionLink( "Safety Team", "safetyteam", new { controller = "admin" }, new { @class = "next-nav__link" } )
+            </li>
+            }
+    }
+    @{
+        System.Security.Claims.ClaimsIdentity aoOwner = ( System.Security.Claims.ClaimsIdentity ) ( User.Identity );
+        if ( aoOwner.HasClaim( "AccountOwner", "True" ) )
+        {
+            <li class="next-nav__item">
+                @Html.ActionLink( "Payment Information", "team", new { controller = "team" }, new { @class = "next-nav__link" } )
+            </li>
+        }
+    }
+   
+    
+
+</ol>
+
+<script type="text/javascript">
+    $("a").removeClass("next-nav__link--is-selected");
+    @{
+        var linkText = ViewData["SelectedNavText"];
+    }
+    var selector = "a.next-nav__link:contains('" +'@linkText' + "')";
+    $(selector).addClass( "next-nav__link--is-selected" );
+</script>

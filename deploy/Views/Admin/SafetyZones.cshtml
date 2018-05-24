@@ -1,0 +1,62 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@model IS.Web.Components.ViewModels.SafetyZonesViewModel
+
+@{
+    ViewBag.Title = "Upload Roster";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Caption
+{Safety Zones}
+
+
+@section SideNav {
+    @Html.Partial( "~/Views/Shared/_AdminSideNav.cshtml", null, new ViewDataDictionary( ViewData ) { { "SelectedNavText", "Safety Zones" } } ) )
+}
+
+
+@section TopButtons
+{
+    <a href="safetyzones/add" class="btn btn-success">Add New</a>
+}
+
+
+<div class="col-md-10 col-md-offset-1">
+    <div class="section">
+        <div class="section-content">
+            <div class="section-row">
+                <div class="section-cell">
+                    <table class="table-section" style="border-collapse: collapse; table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th style="width: 6%; text-align: center">Edit</th>
+                                <th style="width: 20%">Zone Name</th>
+                                <th style="width: 74%">Departments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ( var safetyZone in Model.SafetyZones )
+                            {
+                                <tr style="height: 30px">
+                                    <td style="text-align: center">
+                                        <a href="safetyzones/@safetyZone.Id">
+
+                                            <span class="glyphicon glyphicon-edit" style="font-size: 14pt" aria-hidden="true"></span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @safetyZone.Name
+                                    </td>
+                                    <td>
+                                        @safetyZone.Departments
+                                    </td>
+                                </tr>
+                            }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@{
+    ViewBag.Title = "Upload Roster";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Caption
+{Upload Roster}
+
+
+
+
+@section SideNav {
+    @Html.Partial( "~/Views/Shared/_AdminSideNav.cshtml", null, new ViewDataDictionary( ViewData ) { { "SelectedNavText", "Upload Roster" } } ) )
+}
+
+
+<div class="section">
+    <div class="section-content">
+        <div class="section-row">
+            <div class="section-cell">
+                To save time and make editing easier Ignition Safety provides the capability to upload all of your information.  This can be done by
+                creating a file in an editor such as Excel, saving it as a tab delimited file, and then upload it using this form.  Here you will
+                find the steps necessary to enable this function.<br /><br />
+                
+                1.  The file you create will contain the following columns.  The columns must be in the order defined here.  
+                These column headings must stay present in the file.<br/>
+                FirstName<br/>
+                LastName<br/>
+                ContactPhone<br/>
+                Department<br/>
+                SafetyZone<br/><br/>
+                
+                A few of the columns are easy to understand a couple need explaination:<br/><br/>
+                <strong>Make a unique record:</strong> Each row in the list must be unique.  This is done by combining the first name, last name, and 
+                department.  For example John, Smith, Accounting.  If two people have the same name in the same department add a middle initial to the 
+                first name.  For example John, Smith, Accounting and John T., Smith, Accounting.  We keep rows unique so that history can be kept for each team 
+                member for each drill.<br/><br/>
+                <strong>Department</strong> This column should contain the department the person works in.  Why this is important is that each department 
+                gathers during an emergency in a safety zone.  Many times multiple departments meet in the same safety zone.<br/><br/>
+                <strong>Safety Zone</strong> This column represents a physical place that people will gather during an emergency or drill.  These can be 
+                named for things such as colors or numbers. For example <i>Rally Zone Blue</i> or <i>Area 1</i>
+                <br/><br/>
+
+                Here is a resource for creating a tab delmited file in Excel.  <a href="https://www.howtogeek.com/79991/convert-an-excel-spreadsheet-to-a-tab-delimited-text-file/" target="_blankd">How to create a tab delimited file.  </a>
+                Or you can get started by downloading this sample file and just change the data [<a href="downloadsamplefile">Download Sample</a>]
+                <br/><br/>
+                <i><strong>Please Note:</strong></i> When uploading your roster using this tool all new departments and safety zones will be added.  
+                Departments and safety zones that are no longer used will be preseved if they contain any history for example if they were used 
+                during your last drill.  By using the method for defining a unique record above new names will be added, but existing 
+                matching names will be uneffected.
+            </div>
+        </div>
+        <div class="section-row">
+            <div class="section-cell">
+                <form method="post" asp-action="uploadroster" asp-controller="admin" enctype="multipart/form-data">
+                    <input type="file" name="files" class="btn btn-default" />
+                    <input type="submit" value="Upload" class="btn btn-primary"/>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+

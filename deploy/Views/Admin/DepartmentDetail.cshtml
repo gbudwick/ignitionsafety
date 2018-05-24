@@ -1,0 +1,30 @@
+﻿@model IS.Web.Components.Dtos.DepartmentDto
+
+@inject IS.Services.Services.DepartmentFormService FormService
+
+<div class="col-md-8 col-md-offset-2">
+    <div class="row form-section">
+        <div class="col-md-4 form-section-caption">
+            Department<br />
+        </div>
+        <div class="form-section-body col-md-8">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-row row">
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div asp-validation-summary="All"></div>
+                        <label class="control-label">Name</label>
+                        <input type="text" asp-for="Name" class="form-control width-full" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <label class="control-label">Safety Zone</label>
+                        <select asp-for="SafetyZoneId" asp-items="FormService.GetSafetyZones()" class="form-control width-full"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
